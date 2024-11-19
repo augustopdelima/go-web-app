@@ -1,5 +1,7 @@
+# Build artifacts
+*.exe
+*.dll
+*.so
 
-db/resume.db
-
-main
-main.exe
+# Database files
+db/*.db
