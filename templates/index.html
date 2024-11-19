@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currículos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+    <div class="container mx-auto p-4">
+        <h1 class="text-3xl font-bold mb-6 text-center">Lista de Currículos</h1>
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-white shadow-md rounded-lg">
+                <thead>
+                    <tr class="bg-gray-200">
+                        <th class="py-2 px-4 text-left">Nome</th>
+                        <th class="py-2 px-4 text-left">Email</th>
+                        <th class="py-2 px-4 text-center">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{range .}}
+                    <tr class="border-b hover:bg-gray-100">
+                        <td class="py-2 px-4">{{.Name}}</td>
+                        <td class="py-2 px-4">{{.Email}}</td>
+                        <td class="py-2 px-4 text-center">
+                            <a href="/detail/{{.ID}}" class="text-blue-500 hover:underline">Detalhes</a>
+                        </td>
+                    </tr>
+                    {{end}}
+                </tbody>
+            </table>
+        </div>
+        <div class="mt-6 text-center">
+            <a href="/register" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
+                Novo Currículo
+            </a>
+        </div>
+    </div>
+</body>
+</html>

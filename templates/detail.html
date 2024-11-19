@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currículos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+    <div class="container mx-auto p-6 max-w-lg bg-white shadow-md rounded-lg mt-10">
+        <h1 class="text-2xl font-bold mb-4 text-center text-blue-600">Detalhes do Currículo</h1>
+        <div class="mb-4">
+            <p class="text-lg font-bold">Nome: {{.Name}}</p>
+            <p class="text-lg font-bold">Telefone: {{.Cellphone}}</p>
+            <p class="text-lg font-bold">Email: {{.Email}}</p>
+            <p class="text-lg font-bold">Web:
+                <a href="{{.WebAddress}}" class="text-blue-500 hover:underline" target="_blank">{{.WebAddress}}</a>
+            </p>
+            <p class="text-lg font-bold">Experiência: {{.Experience}}</p>
+        </div>
+        <div class="text-center">
+            <a href="/" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
+                Voltar
+            </a>
+        </div>
+    </div>
+</body>
+</html>
