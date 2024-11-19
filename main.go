@@ -28,10 +28,10 @@ func routes(env *app.Env) http.Handler {
 	registerResumes := middleware.RegisterResumes(tmpl, env)
 	detailResumes := middleware.DetailResume(tmpl, env)
 
-	router.HandleFunc("GET /", listResumes)
-	router.HandleFunc("GET /register", registerPageHandler)
-	router.HandleFunc("POST /register", registerResumes)
-	router.HandleFunc("GET /detail/{id}", detailResumes)
+	router.HandleFunc("GET /", middleware.SecureHeaders(listResumes))
+	router.HandleFunc("GET /register", middleware.SecureHeaders(registerPageHandler))
+	router.HandleFunc("POST /register", middleware.SecureHeaders(registerResumes))
+	router.HandleFunc("GET /detail/{id}", middleware.SecureHeaders(detailResumes))
 
 	return router
 }
