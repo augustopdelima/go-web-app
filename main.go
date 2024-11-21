@@ -4,6 +4,7 @@ import (
 	"embed"
 	"fmt"
 	"html/template"
+	"io/fs"
 	"net/http"
 	"resume-web-app/app"
 	"resume-web-app/db"
@@ -12,6 +13,10 @@ import (
 )
 
 const PORT = ":8080"
+
+//go:embed static/*
+var content embed.FS
+var contentFS, _ = fs.Sub(content, "static")
 
 //go:embed templates
 var templates embed.FS
@@ -32,6 +37,10 @@ func routes(env *app.Env) http.Handler {
 	router.HandleFunc("GET /register", middleware.SecureHeaders(registerPageHandler))
 	router.HandleFunc("POST /register", middleware.SecureHeaders(registerResumes))
 	router.HandleFunc("GET /detail/{id}", middleware.SecureHeaders(detailResumes))
+
+	router.Handle("GET /static/", http.StripPrefix("/static/",
+		http.FileServer(http.FS(contentFS)),
+	))
 
 	return router
 }

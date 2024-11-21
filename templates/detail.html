@@ -1,28 +1,81 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Currículos</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/static/css/bulma.min.css">
+    <style>
+        body {
+            background-color: #f5f5f5;
+        }
+
+        .card {
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .card-header {
+            background-color: #3273dc;
+            color: white;
+        }
+
+        .card-footer {
+            background-color: #f5f5f5;
+        }
+
+        .card-footer-item {
+            font-weight: bold;
+        }
+    </style>
 </head>
-<body class="bg-gray-100 text-gray-800">
-    <div class="container mx-auto p-6 max-w-lg bg-white shadow-md rounded-lg mt-10">
-        <h1 class="text-2xl font-bold mb-4 text-center text-blue-600">Detalhes do Currículo</h1>
-        <div class="mb-4">
-            <p class="text-lg font-bold">Nome: {{.Name}}</p>
-            <p class="text-lg font-bold">Telefone: {{.Cellphone}}</p>
-            <p class="text-lg font-bold">Email: {{.Email}}</p>
-            <p class="text-lg font-bold">Web:
-                <a href="{{.WebAddress}}" class="text-blue-500 hover:underline" target="_blank">{{.WebAddress}}</a>
-            </p>
-            <p class="text-lg font-bold">Experiência: {{.Experience}}</p>
-        </div>
-        <div class="text-center">
-            <a href="/" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
-                Voltar
-            </a>
+
+<body>
+    <div class="container mt-5">
+        <div class="columns is-centered">
+            <div class="column is-half">
+                <!-- Card com as informações do currículo -->
+                <div class="card">
+                    <!-- Cabeçalho -->
+                    <header class="card-header">
+                        <p class="is-size-4 card-header-title">
+                            <strong>Currículo</strong>
+                        </p>
+                    </header>
+
+                    <!-- Corpo do Card -->
+                    <div class="card-content">
+                        <div class="content">
+                            <!-- Nome -->
+                            <p><strong>Nome:</strong> {{.Name}}</p>
+
+                            <!-- Telefone -->
+                            <p><strong>Telefone:</strong> {{.Cellphone}}</p>
+
+                            <!-- Email -->
+                            <p><strong>Email:</strong> <a href="mailto:{{.Email}}" class="has-text-link">{{.Email}}</a>
+                            </p>
+
+                            <!-- Website -->
+                            <p><strong>Website:</strong>
+                                <a href="{{.WebAddress}}" rel=”noopener” class="has-text-link" target="_blank">{{.WebAddress}}</a>
+                            </p>
+
+                            <!-- Experiência -->
+                            <p><strong>Experiência:</strong> {{.Experience}}</p>
+                        </div>
+                    </div>
+
+                    <!-- Rodapé com ações -->
+                    <footer class="card-footer">
+                        <a href="/" class="card-footer-item button is-info is-light">Voltar</a>
+
+                    </footer>
+                </div>
+            </div>
         </div>
     </div>
 </body>
+
 </html>

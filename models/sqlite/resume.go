@@ -22,7 +22,7 @@ func (model *ResumeModel) SelectOne(id string) (*models.Resume, error) {
 
 	resume := models.Resume{}
 
-	err := row.Scan(&resume.ID, &resume.Name, &resume.Cellphone, &resume.Email, &resume.WebAddress, &resume.Experience)
+	err := row.Scan(&resume.ID, &resume.Name, &resume.Email, &resume.Cellphone, &resume.WebAddress, &resume.Experience)
 	if err != nil {
 		return nil, err
 	}

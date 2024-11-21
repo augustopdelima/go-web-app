@@ -1,41 +1,49 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Currículos</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/static/css/bulma.min.css">
 </head>
-<body class="bg-gray-100 text-gray-800">
-    <div class="container mx-auto p-4">
-        <h1 class="text-3xl font-bold mb-6 text-center">Lista de Currículos</h1>
-        <div class="overflow-x-auto">
-            <table class="min-w-full bg-white shadow-md rounded-lg">
+
+<body>
+    <div class="container mt-5">
+        <!-- Título -->
+        <h1 class="title has-text-centered">Lista de Currículos</h1>
+
+        <!-- Tabela -->
+        <div class="table-container mt-4">
+            <table class="table is-striped is-hoverable is-fullwidth">
                 <thead>
-                    <tr class="bg-gray-200">
-                        <th class="py-2 px-4 text-left">Nome</th>
-                        <th class="py-2 px-4 text-left">Email</th>
-                        <th class="py-2 px-4 text-center">Ações</th>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
                     {{range .}}
-                    <tr class="border-b hover:bg-gray-100">
-                        <td class="py-2 px-4">{{.Name}}</td>
-                        <td class="py-2 px-4">{{.Email}}</td>
-                        <td class="py-2 px-4 text-center">
-                            <a href="/detail/{{.ID}}" class="text-blue-500 hover:underline">Detalhes</a>
+                    <tr>
+                        <td>{{.Name}}</td>
+                        <td>{{.Email}}</td>
+                        <td>
+                            <a class="button is-info is-size-6 is-small" href="/detail/{{.ID}}">Detalhes</a>
                         </td>
                     </tr>
                     {{end}}
                 </tbody>
             </table>
         </div>
-        <div class="mt-6 text-center">
-            <a href="/register" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
+
+        <!-- Botão para adicionar novo currículo -->
+        <div class="has-text-right">
+            <a href="/register" class="button is-primary">
                 Novo Currículo
             </a>
         </div>
     </div>
 </body>
+
 </html>

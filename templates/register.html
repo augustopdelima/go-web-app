@@ -1,41 +1,67 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Currículos</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/static/css/bulma.min.css">
 </head>
-<body class="bg-gray-100 text-gray-800">
-    <div class="container mx-auto p-6 max-w-md bg-white shadow-md rounded-lg mt-10">
-        <h1 class="text-2xl font-bold mb-4 text-center text-blue-600">Cadastro de Currículo</h1>
-        <form method="POST" action="/register" class="space-y-4">
-            <div>
-                <label class="block text-lg font-medium text-gray-700">Nome:</label>
-                <input type="text" name="name" required class="w-full mt-1 p-2 border rounded-md focus:ring-blue-500 focus:border-blue-500">
+
+<body>
+    <div class="container mt-5">
+        <!-- Título -->
+        <h1 class="title has-text-centered">Cadastro de Currículo</h1>
+
+        <!-- Formulário -->
+        <form method="POST" action="/register" class="box">
+            <!-- Campo Nome -->
+            <div class="field">
+                <label class="label">Nome:</label>
+                <div class="control">
+                    <input class="input" type="text" name="name" required placeholder="Digite seu nome">
+                </div>
             </div>
-            <div>
-                <label class="block text-lg font-medium text-gray-700">Telefone:</label>
-                <input type="text" name="cellphone" class="w-full mt-1 p-2 border rounded-md focus:ring-blue-500 focus:border-blue-500">
+
+            <!-- Campo Telefone -->
+            <div class="field">
+                <label class="label">Telefone:</label>
+                <div class="control">
+                    <input class="input" type="text" name="cellphone" placeholder="Digite seu telefone">
+                </div>
             </div>
-            <div>
-                <label class="block text-lg font-medium text-gray-700">Email:</label>
-                <input type="email" name="email" required class="w-full mt-1 p-2 border rounded-md focus:ring-blue-500 focus:border-blue-500">
+
+            <!-- Campo Email -->
+            <div class="field">
+                <label class="label">Email:</label>
+                <div class="control">
+                    <input class="input" type="email" name="email" required placeholder="Digite seu email">
+                </div>
             </div>
-            <div>
-                <label class="block text-lg font-medium text-gray-700">Web:</label>
-                <input type="url" name="web" class="w-full mt-1 p-2 border rounded-md focus:ring-blue-500 focus:border-blue-500">
+
+            <!-- Campo Web -->
+            <div class="field">
+                <label class="label">Web:</label>
+                <div class="control">
+                    <input class="input" type="url" name="web" placeholder="Digite seu site ou portfólio">
+                </div>
             </div>
-            <div>
-                <label class="block text-lg font-medium text-gray-700">Experiência:</label>
-                <textarea name="experience" required class="w-full mt-1 p-2 border rounded-md focus:ring-blue-500 focus:border-blue-500"></textarea>
+
+            <!-- Campo Experiência -->
+            <div class="field">
+                <label class="label">Experiência:</label>
+                <div class="control">
+                    <textarea class="textarea" name="experience" required
+                        placeholder="Descreva sua experiência"></textarea>
+                </div>
             </div>
-            <div class="text-center">
-                <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
-                    Cadastrar
-                </button>
+
+            <!-- Botão de Cadastro -->
+            <div class="field has-text-right">
+                <button type="submit" class="button is-primary">Cadastrar</button>
             </div>
         </form>
     </div>
 </body>
+
 </html>
