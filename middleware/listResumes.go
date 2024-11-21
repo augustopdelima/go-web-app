@@ -7,6 +7,7 @@ import (
 )
 
 func notFound(tmpl *template.Template, response http.ResponseWriter) {
+	response.WriteHeader(http.StatusNotFound)
 	tmpl.ExecuteTemplate(response, "not-found.html", nil)
 }
 

@@ -33,14 +33,14 @@ func routes(env *app.Env) http.Handler {
 	registerResumes := middleware.RegisterResumes(tmpl, env)
 	detailResumes := middleware.DetailResume(tmpl, env)
 
+	staticFiles := middleware.StaticFiles(contentFS)
+
 	router.HandleFunc("GET /", middleware.SecureHeaders(listResumes))
 	router.HandleFunc("GET /register", middleware.SecureHeaders(registerPageHandler))
 	router.HandleFunc("POST /register", middleware.SecureHeaders(registerResumes))
 	router.HandleFunc("GET /detail/{id}", middleware.SecureHeaders(detailResumes))
 
-	router.Handle("GET /static/", http.StripPrefix("/static/",
-		http.FileServer(http.FS(contentFS)),
-	))
+	router.Handle("GET /static/", middleware.SecureHeaders(staticFiles))
 
 	return router
 }

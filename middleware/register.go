@@ -21,6 +21,7 @@ func escapeString(value string) string {
 func RegisterResumes(tmpl *template.Template, env *app.Env) http.HandlerFunc {
 	return http.HandlerFunc(func(response http.ResponseWriter, request *http.Request) {
 		err := request.ParseForm()
+
 		if err != nil {
 			http.Error(response, err.Error(), http.StatusBadRequest)
 			return
