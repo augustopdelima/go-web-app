@@ -6,17 +6,13 @@ import (
 	"resume-web-app/app"
 )
 
-func notFound(tmpl *template.Template, response http.ResponseWriter) {
-	response.WriteHeader(http.StatusNotFound)
-	tmpl.ExecuteTemplate(response, "not-found.html", nil)
-}
-
 func ListResumes(tmpl *template.Template, env *app.Env) http.HandlerFunc {
 	return http.HandlerFunc(func(response http.ResponseWriter, request *http.Request) {
 		path := request.URL.Path
 
 		if path != "/" {
-			notFound(tmpl, response)
+			response.WriteHeader(http.StatusNotFound)
+			tmpl.ExecuteTemplate(response, "not-found.html", nil)
 			return
 		}
 

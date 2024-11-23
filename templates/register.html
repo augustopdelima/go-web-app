@@ -15,6 +15,10 @@
 
         <!-- Formulário -->
         <form method="POST" action="/register" class="box">
+
+            {{ .csrfField }}
+
+
             <!-- Campo Nome -->
             <div class="field">
                 <label class="label">Nome:</label>
@@ -46,6 +50,8 @@
                     <input class="input" type="url" name="web" placeholder="Digite seu site ou portfólio">
                 </div>
             </div>
+
+
 
             <!-- Campo Experiência -->
             <div class="field">

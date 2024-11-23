@@ -10,6 +10,8 @@ import (
 	"resume-web-app/db"
 	"resume-web-app/middleware"
 	"resume-web-app/models/sqlite"
+
+	"github.com/gorilla/csrf"
 )
 
 const PORT = ":8080"
@@ -25,7 +27,7 @@ var templates embed.FS
 
 var tmpl = template.Must(template.ParseFS(templates, "templates/*.html"))
 
-func routes(env *app.Env) http.Handler {
+func createRouter(env *app.Env, tmpl *template.Template) http.Handler {
 	router := http.NewServeMux()
 
 	registerPageHandler := middleware.RegisterPage(tmpl)
@@ -49,15 +51,22 @@ func main() {
 	database := db.InitDatabase()
 	defer database.Close()
 
-	app := app.Env{
+	csrfMiddleware := csrf.Protect(
+		[]byte("32-byte-long-auth-key"),
+		csrf.SameSite(csrf.SameSiteStrictMode),
+	)
+
+	env := app.Env{
 		Resume: &sqlite.ResumeModel{
 			DB: database,
 		},
 	}
 
+	router := createRouter(&env, tmpl)
+
 	server := http.Server{
 		Addr:    PORT,
-		Handler: routes(&app),
+		Handler: csrfMiddleware(router),
 	}
 
 	fmt.Println("Server listen in http://localhost:8080/")
