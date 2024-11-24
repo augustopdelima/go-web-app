@@ -54,7 +54,7 @@ Este projeto utiliza as seguintes bibliotecas:
    go run main.go
    ```
    
-4. **Fazer o build (Opicional)**
+4. **Fazer o build (Opcional)**
    ```bash
    go build main.go
    ./main
