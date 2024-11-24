@@ -1,8 +1,9 @@
-# Resume Web App
+# Currículo Web App
 
 Este é um projeto de sistema web em Go para gerenciamento de currículos. Ele permite cadastrar, listar e visualizar detalhes de currículos por meio de uma interface web. 
 
-
+## Grupo
+- Augusto Pasquali, Gabriel Eberhardt e Lucas Pacheco
 
 
 ## Estrutura do Projeto
