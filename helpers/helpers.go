@@ -13,12 +13,12 @@ func ValidateEmail(email string) bool {
 func ValidateUrl(address string) bool {
 	url, err := url.Parse(address)
 
-	if url.Scheme != "" {
-		return true
+	if url.Scheme == "" {
+		return false
 	}
 
-	if url.Host != "" {
-		return true
+	if url.Host == "" {
+		return false
 	}
 
 	return err == nil
