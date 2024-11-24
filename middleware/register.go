@@ -29,7 +29,7 @@ func RegisterResumes(tmpl *template.Template, env *app.Env) http.HandlerFunc {
 		err := request.ParseForm()
 
 		if err != nil {
-			http.Error(response, err.Error(), http.StatusBadRequest)
+			http.Error(response, err.Error(), http.StatusInternalServerError)
 			return
 		}
 
@@ -68,6 +68,17 @@ func RegisterResumes(tmpl *template.Template, env *app.Env) http.HandlerFunc {
 			}
 		}
 
+		if resume.Cellphone != "" {
+
+			validCellphone := helpers.ValidateCellphoneNumber(resume.Cellphone)
+
+			if !validCellphone {
+				http.Error(response, "Cellphone number must be valid", http.StatusBadRequest)
+				return
+			}
+
+		}
+
 		err = env.Resume.Insert(resume)
 
 		if err != nil {
@@ -75,6 +86,6 @@ func RegisterResumes(tmpl *template.Template, env *app.Env) http.HandlerFunc {
 			return
 		}
 
-		http.Redirect(response, request, "/", http.StatusFound)
+		http.Redirect(response, request, "/", http.StatusMovedPermanently)
 	})
 }
