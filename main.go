@@ -54,6 +54,7 @@ func main() {
 	csrfMiddleware := csrf.Protect(
 		[]byte("32-byte-long-auth-key"),
 		csrf.SameSite(csrf.SameSiteStrictMode),
+		csrf.ErrorHandler(middleware.ShowError(tmpl, "Tente novamente mais tarde")),
 	)
 
 	env := app.Env{
