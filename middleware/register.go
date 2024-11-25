@@ -29,7 +29,7 @@ func RegisterResumes(tmpl *template.Template, env *app.Env) http.HandlerFunc {
 		err := request.ParseForm()
 
 		if err != nil {
-			http.Error(response, err.Error(), http.StatusInternalServerError)
+			ShowErrorPage(tmpl, response, "Erro interno no servidor", http.StatusInternalServerError)
 			return
 		}
 
@@ -42,19 +42,19 @@ func RegisterResumes(tmpl *template.Template, env *app.Env) http.HandlerFunc {
 		}
 
 		if resume.Name == "" {
-			http.Error(response, "Name is required", http.StatusBadRequest)
+			ShowErrorPage(tmpl, response, "Nome é necessário", http.StatusBadRequest)
 			return
 		}
 
 		if resume.Experience == "" {
-			http.Error(response, "Experience is required", http.StatusBadRequest)
+			ShowErrorPage(tmpl, response, "Experiência é necessária", http.StatusBadRequest)
 			return
 		}
 
 		validEmail := helpers.ValidateEmail(resume.Email)
 
 		if !validEmail {
-			http.Error(response, "Email must be valid", http.StatusBadRequest)
+			ShowErrorPage(tmpl, response, "Email deve ser válido", http.StatusBadRequest)
 			return
 		}
 
@@ -63,7 +63,7 @@ func RegisterResumes(tmpl *template.Template, env *app.Env) http.HandlerFunc {
 			validWebAddress := helpers.ValidateUrl(resume.WebAddress)
 
 			if !validWebAddress {
-				http.Error(response, "Web Address must be valid", http.StatusBadRequest)
+				ShowErrorPage(tmpl, response, "Endereço web deve ser válido", http.StatusBadRequest)
 				return
 			}
 		}
@@ -73,7 +73,7 @@ func RegisterResumes(tmpl *template.Template, env *app.Env) http.HandlerFunc {
 			validCellphone := helpers.ValidateCellphoneNumber(resume.Cellphone)
 
 			if !validCellphone {
-				http.Error(response, "Cellphone number must be valid", http.StatusBadRequest)
+				ShowErrorPage(tmpl, response, "Telefone deve ser válido", http.StatusBadRequest)
 				return
 			}
 
@@ -82,7 +82,7 @@ func RegisterResumes(tmpl *template.Template, env *app.Env) http.HandlerFunc {
 		err = env.Resume.Insert(resume)
 
 		if err != nil {
-			http.Error(response, err.Error(), http.StatusInternalServerError)
+			ShowErrorPage(tmpl, response, "Não foi possível cadastrar o currículo", http.StatusInternalServerError)
 			return
 		}
 

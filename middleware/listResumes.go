@@ -19,7 +19,7 @@ func ListResumes(tmpl *template.Template, env *app.Env) http.HandlerFunc {
 		resumes, err := env.Resume.All()
 
 		if err != nil {
-			http.Error(response, "Internal server error", http.StatusInternalServerError)
+			ShowErrorPage(tmpl, response, "Erro interno no servidor", http.StatusInternalServerError)
 			return
 		}
 
