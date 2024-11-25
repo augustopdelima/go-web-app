@@ -69,6 +69,6 @@ func main() {
 		Handler: csrfMiddleware(router),
 	}
 
-	fmt.Println("Server listen in http://localhost:8080/")
+	fmt.Printf("Server listen in http://localhost%s/\n", PORT)
 	server.ListenAndServe()
 }
