@@ -7,9 +7,16 @@ import (
 	"resume-web-app/app"
 	"resume-web-app/helpers"
 	"resume-web-app/models"
+	"strings"
 
 	"github.com/gorilla/csrf"
 )
+
+func sanitizeInput(input string) string {
+	removedWhiteSpace := strings.TrimSpace(input)
+
+	return html.EscapeString(removedWhiteSpace)
+}
 
 func RegisterPage(tmpl *template.Template) http.HandlerFunc {
 	return http.HandlerFunc(func(response http.ResponseWriter, request *http.Request) {
@@ -34,11 +41,11 @@ func RegisterResumes(tmpl *template.Template, env *app.Env) http.HandlerFunc {
 		}
 
 		resume := models.Resume{
-			Name:       html.EscapeString(request.PostForm.Get("name")),
-			Email:      html.EscapeString(request.PostForm.Get("email")),
-			Cellphone:  html.EscapeString(request.PostForm.Get("cellphone")),
-			WebAddress: html.EscapeString(request.PostForm.Get("web")),
-			Experience: html.EscapeString(request.PostForm.Get("experience")),
+			Name:       sanitizeInput(request.PostForm.Get("name")),
+			Email:      sanitizeInput(request.PostForm.Get("email")),
+			Cellphone:  sanitizeInput(request.PostForm.Get("cellphone")),
+			WebAddress: sanitizeInput(request.PostForm.Get("web")),
+			Experience: sanitizeInput(request.PostForm.Get("experience")),
 		}
 
 		if resume.Name == "" {

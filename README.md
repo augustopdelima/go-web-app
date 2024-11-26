@@ -41,7 +41,7 @@ Este projeto utiliza as seguintes bibliotecas:
 
 1. **Clone o repositório**:
    ```bash
-   git clone https://github.com/seuusuario/resume-web-app.git
+   git clone https://github.com/augustopdelima/go-web-app.git
    cd resume-web-app
    ```
 
